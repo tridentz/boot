@@ -11,7 +11,7 @@
 # Start Project
 - Profile
   - local
-    - Create [application-local.properties](src%2Fmain%2Fresources%2Fapplication-local.properties)
+    - Create [application-local.properties](src/main/resources/application-local.properties)
     - Add environment variable : `spring.profiles.active=local`
 - Database
   - Postgresql by Docker
@@ -20,7 +20,7 @@
     - ```docker ps -a```
     - ```docker restart <containerId>```
   - Config
-    - Spring Config: [application.properties](src%2Fmain%2Fresources%2Fapplication.properties)
+    - Spring Config: [application.properties](src/main/resources/application.properties)
     - Liquibase Config: [liquibase.properties](liquibase.properties)
       - Development Sql change:
         - Set `update` to `spring.jpa.hibernate.ddl-auto` in [application.properties](src/main/resources/application.properties)
