@@ -15,8 +15,10 @@
         - Add environment variable : `spring.profiles.active=local`
 - Database
     - Postgresql by Docker
+        - docker network
+          - `docker network create mynetwork`
         - ```docker pull postgres```
-        - ```docker run -itd -e POSTGRES_USER=sa -e POSTGRES_PASSWORD=pw -p 5432:5432 -v /data:/var/lib/postgresql/data --name postgresql postgres```
+        - ```sudo docker run --network mynetwork -itd -e POSTGRES_USER=sa -e POSTGRES_PASSWORD=pw -p 5432:5432 --name postgresql postgres```
         - ```docker ps -a```
         - ```docker restart <containerId>```
     - Config
@@ -42,6 +44,19 @@
                 - And check the java again: ```which java```
                 - Check for Maven version: ```mvn -version```
                 - If maven java. is still not u want: ```export JAVA_HOME=/Library/Java/JavaVirtualMachines/<your java path>/Contents/Home/```
+- docker
+  - build a jar
+    - to skip test and liquibase `mvn clean package -Dmaven.test.skip=true`
+  - docker pull
+    - `docker pull openjdk:11`
+  - docker build
+    - `docker build --tag=boot:latest .` or `docker build --no-cache --tag=boot:latest .`
+  - docker run
+    - `docker run --network mynetwork -it -e PROFILE=ecs -p8080:8080 --name boot boot:latest`
+  - docker container inspect
+    - `docker container inspect <containerId>`
+    - by `inspect`, you may found the metadata of the container
+
 
 ### Reference Documentation
 For further reference, please consider the following sections:
